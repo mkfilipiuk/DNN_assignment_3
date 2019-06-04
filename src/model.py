@@ -19,6 +19,10 @@ class WordEmbedder(nn.Module):
         hidden_states = hidden_states.view(2, 2, -1, 40)[-1]
         return torch.cat([hidden_states[0], hidden_states[1]], dim=-1)
     
+    def embed(self, x):
+        with torch.no_grad():
+            return self.forward(x)
+    
 class LanguageModel(nn.Module):
     def __init__(self):
         super().__init__()
@@ -74,3 +78,7 @@ class LanguageModel(nn.Module):
                 c += torch.sum(torch.argmax(outputs, 1) == targs)
                 a += torch.argmax(outputs, 1).shape[0]
         print(float(c)/a)
+    
+    def get_word_embedder(self):
+        return self.word_embedder
+        
