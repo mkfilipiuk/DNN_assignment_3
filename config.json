@@ -1,0 +1,5 @@
+{
+  "DATA_PATH":"data",
+  "INPUT_FILE_NAME": "task3_train.txt",
+  "DEVICE_NUMBER":1
+}
